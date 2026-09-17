@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import WeatherSnapshot
+
+@admin.register(WeatherSnapshot)
+class WeatherSnapshotAdmin(admin.ModelAdmin):
+    list_display = ("name", "country_code", "capital", "temperature", "weather_description", "fetched_at", "created", "modified")
+    list_filter = ("region", "country_code")
+    search_fields = ("name", "country_code", "capital")

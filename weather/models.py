@@ -16,5 +16,6 @@ class WeatherSnapshot(TimeStampedModel):
         verbose_name = "weather snapshot"
         verbose_name_plural = "weather snapshots"
         ordering = ["country_code"]
+
     def __str__(self)->str: 
         return self.name
