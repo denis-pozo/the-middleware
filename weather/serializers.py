@@ -7,4 +7,4 @@ class CountrySnapshotSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CountrySnapshot
-        fields = ['country_code', 'name']
+        fields = '__all__'
