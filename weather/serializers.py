@@ -1,11 +1,10 @@
 from rest_framework import serializers
 
-from .models import WeatherSnapshot
+from .models import CountrySnapshot
 
-class WeatherSnapshotSerializer(serializers.ModelSerializer):
-    country_code = serializers.CharField(max_length=3)
-    name = serializers.CharField(max_length=100)
+class CountrySnapshotSerializer(serializers.ModelSerializer):
+    model = CountrySnapshot
 
     class Meta:
-        model = WeatherSnapshot
+        model = CountrySnapshot
         fields = ['country_code', 'name']
