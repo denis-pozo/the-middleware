@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from config import settings
 
 from .clients.countries_client import CountryClient
-from .clients.exceptions import CountryNotFoundError, CountryServiceError
+from .clients.exceptions import CountryNotFoundException, CountryServiceException
 from .models import CountrySnapshot
 from .serializers import CountrySnapshotSerializer
 
@@ -31,9 +31,9 @@ def get_weather_by_country(request, country_code):
 def get_country_by_name(request, country_name):
     try:
         country_data = countries_client.get_by_country_name(country_name)
-    except CountryNotFoundError:
+    except CountryNotFoundException:
         return Response({"detail": "Country not found"}, status=status.HTTP_404_NOT_FOUND)
-    except CountryServiceError:
+    except CountryServiceException:
         return Response({"detail": "Countries service unavailable"}, status=status.HTTP_502_BAD_GATEWAY)
 
     return Response(country_data)

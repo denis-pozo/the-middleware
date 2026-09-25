@@ -55,6 +55,13 @@ class CountryClientGetByCountryNameTests(SimpleTestCase):
 
         with self.assertRaises(CountryServiceException):
             self.client.get_by_country_name("Spain")
+
+    @patch("requests.get")
+    def test_client_format_response_error(self, mock_get):
+        mock_get.return_value = Mock(status_code=200, ok=True, json= Mock(side_effect=ValueError))
+
+        with self.assertRaises(CountryServiceException):
+            self.client.get_by_country_name("Any")
     
 
 
