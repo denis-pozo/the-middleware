@@ -12,7 +12,7 @@ class CountryClient:
         except exceptions.Timeout as e:
             raise CountryServiceError("Countries API timed out") from e
         except exceptions.ConnectionError as e:
-            raise CountryServiceError("Countries API unreachble") from e
+            raise CountryServiceError("Countries API unreachable") from e
 
         if response.status_code == 404:
             raise CountryNotFoundError(f"No country found for '{country_name}'")
